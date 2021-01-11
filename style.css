@@ -41,6 +41,13 @@ main {
     grid-gap: 5px;
 }
 
+.highlight {
+    color: rgb(17, 134, 138);
+    font-size: 1.5rem;
+}
+.highlight h3 {
+    text-decoration: underline;
+}
 @media screen and (min-width: 700px){
     main {
         flex-direction: row;
