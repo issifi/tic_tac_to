@@ -39,19 +39,23 @@ const game = (() => {
         }
     }
     const checkWinner = () => {
-        let winner;
+        let winner = false;
         winCondition.forEach((item, index)=>{
-            if(gameBord.getGameBord()[item[0]] !== ''){
+            if(gameBord.getGameBord()[item[0]] !== '' && gameBord.getGameBord()[item[0]] === gameBord.getGameBord()[item[1]] && gameBord.getGameBord()[item[0]] === gameBord.getGameBord()[item[2]]){
+                console.log("winner is: ",getPlayerTurn().getName());
+                endGame(getPlayerTurn().getName());
+                winner = getPlayerTurn().getName();
+                return winner;
+            }
+            if(!winner){
                 if(Array.from(gameBord.getGameBord()).every((item)=>{return item != '';})){
                     endGame('tie');
-                    winner = "tie"
-                } if(gameBord.getGameBord()[item[0]] === gameBord.getGameBord()[item[1]] && gameBord.getGameBord()[item[0]] === gameBord.getGameBord()[item[2]]){
-                    console.log("winner is: ",getPlayerTurn().getName());
-                    endGame(getPlayerTurn().getName());
-                    winner = getPlayerTurn().getName();
+                    winner = "tie";
                 }
             }
+            
         })
+        
         return winner;
     }
     const endGame = (status) => {
@@ -64,13 +68,18 @@ const game = (() => {
         }else {
             _player2.lastElementChild.textContent = 'tie';
             _player1.lastElementChild.textContent = 'tie';
+            _player1.classList.remove('highlight')||_player2.classList.remove('highlight');
             // document.querySelector('.highlight').classList.remove('highlight');
         };
 
     }
     const resetDOM = ()=>{
-        document.querySelector('.highlight').lastElementChild.textContent = 'Your turn';
         playerTurn = player1;
+        _player1.classList.add('highlight');
+        _player1.lastElementChild.textContent = 'Your turn';
+        _player2.classList.remove('highlight');
+        _player2.lastElementChild.textContent = '';
+        document.querySelector('.highlight').lastElementChild.textContent = 'Your turn';
         /* _player1.lastElementChild.textContent = '';
         _player2.lastElementChild.textContent = ''; */
     }
