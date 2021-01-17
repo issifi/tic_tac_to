@@ -58,11 +58,11 @@ const game = (() => {
     const endGame = (status) => {
         if(status === 'player1'){
             _player1.lastElementChild.textContent = 'YOU WIN';
-            _player1.classList.add('hidhlidht');
+            // _player1.classList.add('highlight');
             _player2.lastElementChild.textContent = 'YOU Lost';
         }else if(status === 'player2'){
             _player2.lastElementChild.textContent = 'YOU WIN';
-            _player2.classList.add('hidhlidht');
+            // _player2.classList.add('highlight');
             _player1.lastElementChild.textContent = 'YOU Lost';
         }else {
             _player2.lastElementChild.textContent = 'tie';

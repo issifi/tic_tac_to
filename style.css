@@ -32,6 +32,7 @@ main {
     height: 42px;
     justify-content: space-between;
     margin: 10px 0;
+    transition: font-size 1s;
 }
 .flex-2 *{
     margin: 5px 0;
