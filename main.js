@@ -42,18 +42,15 @@ const game = (() => {
         let winner = false;
         winCondition.forEach((item, index)=>{
             if(gameBord.getGameBord()[item[0]] !== '' && gameBord.getGameBord()[item[0]] === gameBord.getGameBord()[item[1]] && gameBord.getGameBord()[item[0]] === gameBord.getGameBord()[item[2]]){
-                // ///////////// debugin
-                console.log("winner is: ",getPlayerTurn().getName());
-                endGame(getPlayerTurn().getName());
                 winner = getPlayerTurn().getName();
+                endGame(winner);
                 return winner;
             }
         })
             if(!winner){
                 if(Array.from(gameBord.getGameBord()).every((item)=>{return item != '';})){
                     winner = 'tie'
-                    endGame('tie');
-                    console.log('tie')
+                    endGame(winner);
                 }
             }
         return winner;
@@ -80,8 +77,6 @@ const game = (() => {
         _player2.classList.remove('highlight');
         _player2.lastElementChild.textContent = '';
         document.querySelector('.highlight').lastElementChild.textContent = 'Your turn';
-        /* _player1.lastElementChild.textContent = '';
-        _player2.lastElementChild.textContent = ''; */
     }
     return { player1, player2, getPlayerTurn, switchPlayerTurn, checkWinner, resetDOM}
 })();
@@ -105,7 +100,6 @@ const gameBord = (()=>{
                 gameBord[index] = game.getPlayerTurn().getMark();
                 render();
                 if(!game.checkWinner()) {
-                    console.log(game.checkWinner())
                     game.switchPlayerTurn();
                 };
             }
