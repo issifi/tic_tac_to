@@ -42,36 +42,36 @@ const game = (() => {
         let winner = false;
         winCondition.forEach((item, index)=>{
             if(gameBord.getGameBord()[item[0]] !== '' && gameBord.getGameBord()[item[0]] === gameBord.getGameBord()[item[1]] && gameBord.getGameBord()[item[0]] === gameBord.getGameBord()[item[2]]){
+                // ///////////// debugin
                 console.log("winner is: ",getPlayerTurn().getName());
                 endGame(getPlayerTurn().getName());
                 winner = getPlayerTurn().getName();
                 return winner;
             }
+        })
             if(!winner){
                 if(Array.from(gameBord.getGameBord()).every((item)=>{return item != '';})){
+                    winner = 'tie'
                     endGame('tie');
-                    winner = "tie";
+                    console.log('tie')
                 }
             }
-            
-        })
-        
         return winner;
     }
     const endGame = (status) => {
         if(status === 'player1'){
             _player1.lastElementChild.textContent = 'YOU WIN';
+            _player1.classList.add('hidhlidht');
             _player2.lastElementChild.textContent = 'YOU Lost';
         }else if(status === 'player2'){
             _player2.lastElementChild.textContent = 'YOU WIN';
+            _player2.classList.add('hidhlidht');
             _player1.lastElementChild.textContent = 'YOU Lost';
         }else {
             _player2.lastElementChild.textContent = 'tie';
             _player1.lastElementChild.textContent = 'tie';
             _player1.classList.remove('highlight')||_player2.classList.remove('highlight');
-            // document.querySelector('.highlight').classList.remove('highlight');
         };
-
     }
     const resetDOM = ()=>{
         playerTurn = player1;
@@ -104,8 +104,10 @@ const gameBord = (()=>{
             if(gameBord[index] === ''){
                 gameBord[index] = game.getPlayerTurn().getMark();
                 render();
-                if(game.checkWinner()) return;
-                game.switchPlayerTurn();
+                if(!game.checkWinner()) {
+                    console.log(game.checkWinner())
+                    game.switchPlayerTurn();
+                };
             }
         })
     }
