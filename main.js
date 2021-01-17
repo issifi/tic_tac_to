@@ -96,6 +96,9 @@ const gameBord = (()=>{
     }
     const addMark = (item, index)=>{
         item.addEventListener('click', ()=>{
+            if(game.checkWinner()){
+                return
+            }else
             if(gameBord[index] === ''){
                 gameBord[index] = game.getPlayerTurn().getMark();
                 render();
