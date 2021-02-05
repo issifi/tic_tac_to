@@ -86,7 +86,6 @@ const game = (() => {
 const gameBord = (()=>{
     let gameBord = ['','','','','','','','',''];
     // cache DOM
-    let gameBordGrid = document.querySelector('#grid-container');
     let gameBordBtn = document.querySelectorAll('#grid-container .btn');
     const newBtn = document.querySelector("#btn-new");
 
